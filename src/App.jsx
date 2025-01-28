@@ -1,11 +1,10 @@
 import React from "react";
-import { Icons } from "./assets/icons";
+import { Icons } from "./assets";
 
 const App = () => {
   return (
     <div>
-      {" "}
-      <Icons.Logo />
+      <Icons.ArrowR />
     </div>
   );
 };
