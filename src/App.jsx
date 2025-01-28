@@ -1,10 +1,10 @@
 import React from "react";
-import { Icons } from "./assets";
+import { Icons, IconsAdd } from "./assets";
 
 const App = () => {
   return (
     <div>
-      <Icons.ArrowR />
+      <IconsAdd.FiveStars />
     </div>
   );
 };

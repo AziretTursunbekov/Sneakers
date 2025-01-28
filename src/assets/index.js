@@ -12,7 +12,7 @@ import VectorIn from "./icons/VectorIn.svg?react";
 import VectorX from "./icons/VectorX.svg?react";
 import VectorYouTube from "./icons/VectorYouTube.svg?react";
 
-export const Icons = {
+export const IconsAdd = {
   ArrowL,
   ArrowR,
   Facebook,
