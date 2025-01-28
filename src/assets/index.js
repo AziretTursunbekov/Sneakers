@@ -2,7 +2,7 @@ import ArrowL from "./icons/ArrowL.svg?react";
 import ArrowR from "./icons/ArrowR.svg?react";
 import Facebook from "./icons/Facebook.svg?react";
 import FiveStars from "./icons/FiveStars.svg?react";
-import FourStar from "./icons/FourStar.svg?react";
+import FourStars from "./icons/FourStars.svg?react";
 import Heart from "./icons/Heart.svg?react";
 import Instagram from "./icons/Instagram.svg?react";
 import Logo from "./icons/Logo.svg?react";
@@ -17,7 +17,7 @@ export const Icons = {
   ArrowR,
   Facebook,
   FiveStars,
-  FourStar,
+  FourStars,
   Heart,
   Instagram,
   Logo,
