@@ -1,6 +1,6 @@
 # SNEAKERS-MASTER
 
-1. ## Serik
+1. Serik
 ## Nuriza
 ## Ariana
 ## Akbermet
