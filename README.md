@@ -1,7 +1,7 @@
 # SNEAKERS-MASTER
 
 1. Serik
-## Nuriza
+2. ## Nuriza
 ## Ariana
 ## Akbermet
 ## Daniyar
