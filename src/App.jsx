@@ -1,10 +1,5 @@
-import { Icons } from "./assets";
-import SignIn from "./components/sign/SignIn";
-
 const App = () => {
-  return <div>
-    <SignIn/>
-  </div>;
+  return <div></div>;
 };
 
 export default App;
