@@ -1,12 +1,5 @@
-import React from "react";
-import { Icons, IconsAdd } from "./assets";
-
 const App = () => {
-  return (
-    <div>
-      <IconsAdd.FiveStars />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default App;
