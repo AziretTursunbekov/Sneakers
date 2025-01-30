@@ -5,7 +5,7 @@ import FiveStars from "./icons/FiveStars.svg?react";
 import FourStars from "./icons/FourStars.svg?react";
 import Heart from "./icons/Heart.svg?react";
 import Instagram from "./icons/Instagram.svg?react";
-import Logo from "./icons/Logo.svg?react";
+import LogoHeader from "./icons/LogoHeader.svg?react";
 import Man from "./icons/Man.svg?react";
 import Vector from "./icons/Vector.svg?react";
 import VectorIn from "./icons/VectorIn.svg?react";
@@ -20,7 +20,7 @@ export const Icons = {
   FourStars,
   Heart,
   Instagram,
-  Logo,
+  LogoHeader,
   Man,
   Vector,
   VectorIn,
