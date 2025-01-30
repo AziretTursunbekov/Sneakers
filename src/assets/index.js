@@ -10,7 +10,7 @@ import Man from "./icons/Man.svg?react";
 import Vector from "./icons/Vector.svg?react";
 import VectorIn from "./icons/VectorIn.svg?react";
 import VectorX from "./icons/VectorX.svg?react";
-import VectorYouTube from "./icons/VectorYouTube.svg?react";
+import YouTube from "./icons/VectorYouTube.svg?react";
 
 export const Icons = {
   ArrowL,
@@ -25,5 +25,5 @@ export const Icons = {
   Vector,
   VectorIn,
   VectorX,
-  VectorYouTube,
+  YouTube,
 };
