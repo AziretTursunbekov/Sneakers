@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Eye, EyeOff } from "lucide-react";
+import ButtonSignIn from "../UI/button/ButtonSignIn";
 
 const SignIn = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({ login: "", password: "" });
 
   useEffect(() => {
     const savedLogin = localStorage.getItem("login");
@@ -24,48 +26,70 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("login", login);
-    localStorage.setItem("password", password);
-    alert("Данные сохранены!");
+
+    let isValid = true;
+    const newErrors = { login: "", password: "" };
+
+    if (!login) {
+      newErrors.login = "Логин не может быть пустым";
+      isValid = false;
+    }
+    if (!password) {
+      newErrors.password = "Пароль не может быть пустым";
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+
+    if (isValid) {
+      localStorage.setItem("login", login);
+      localStorage.setItem("password", password);
+      alert("Данные сохранены!");
+    }
   };
   return (
     <MainSignInDiv>
       <ContentSection>
         <h1>Вход</h1>
-        <FormTag>
-          <label htmlFor="login">Логин</label>
-          <input
-            type="text"
-            placeholder="Введите логин"
-            id="login"
-            value={login}
-            onChange={handleLoginChange}
-          />
-        </FormTag>
-
-        <FormTag>
-          <label htmlFor="password">Пароль</label>
-          <PasswordWrapper>
-            <PasswordInput
-              type={showPassword ? "text" : "password"}
-              placeholder="Введите пароль"
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
+        <Forma onSubmit={handleSubmit}>
+          <FormTag>
+            <label htmlFor="login">Логин</label>
+            <input
+              type="text"
+              placeholder="Введите логин"
+              id="login"
+              value={login}
+              onChange={handleLoginChange}
             />
-            <EyeButton
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </EyeButton>
-          </PasswordWrapper>
-        </FormTag>
-        <Btn onClick={handleSubmit}>Войти</Btn>
+            {errors.login && <ErrorText>{errors.login}</ErrorText>}
+          </FormTag>
+
+          <FormTag>
+            <label htmlFor="password">Пароль</label>
+            <PasswordWrapper>
+              <PasswordInput
+                type={showPassword ? "text" : "password"}
+                placeholder="Введите пароль"
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <EyeButton
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </EyeButton>
+            </PasswordWrapper>
+            {errors.password && <ErrorText>{errors.password}</ErrorText>}
+          </FormTag>
+          <ButtonSignIn type="submit">Войти</ButtonSignIn>
+        </Forma>
+
         <TextDiv>
           <p>или</p>
           <a href="#">зарегистрироваться</a>
-          <a href="#">Забыли пароль?</a>
+          <ATag href="#">Забыли пароль?</ATag>
         </TextDiv>
       </ContentSection>
     </MainSignInDiv>
@@ -81,6 +105,7 @@ const MainSignInDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const ContentSection = styled.section`
   width: 500px;
   height: auto;
@@ -97,16 +122,9 @@ const ContentSection = styled.section`
     font-weight: lighter;
   }
 `;
-const Btn = styled.button`
-  width: 400px;
-  height: 54px;
-  border: none;
-  color: white;
-  background-color: #4a4c6c;
-  font-size: 20px;
-  font-family: sans-serif;
-  font-weight: lighter;
-  cursor: pointer;
+
+const ATag = styled.a`
+  font-weight: bold;
 `;
 const FormTag = styled.div`
   display: flex;
@@ -128,10 +146,12 @@ const FormTag = styled.div`
     font-family: sans-serif;
   }
 `;
+
 const PasswordWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
+
 const PasswordInput = styled.input`
   width: 100%;
   height: 48px;
@@ -142,6 +162,7 @@ const PasswordInput = styled.input`
   font-size: 16px;
   font-family: sans-serif;
 `;
+
 const EyeButton = styled.button`
   position: absolute;
   top: 50%;
@@ -156,6 +177,7 @@ const EyeButton = styled.button`
   align-items: center;
   justify-content: center;
 `;
+
 const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -169,4 +191,14 @@ const TextDiv = styled.div`
   p {
     color: #807c7c;
   }
+`;
+const Forma = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+const ErrorText = styled.p`
+  color: red;
+  font-size: 12px;
+  margin: 5px;
 `;
