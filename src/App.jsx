@@ -1,7 +1,11 @@
-import { Icons } from "./assets";
+import Footer from "./pages/footer/Footer";
 
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Footer />
+    </div>
+  );
 };
 
 export default App;
