@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Eye, EyeOff } from "lucide-react";
 
@@ -81,7 +81,9 @@ const SignIn = () => {
               value={email}
               onChange={handleEmailChange}
             />
-            <Valid>{errors.email && <ErrorText>{errors.email}</ErrorText>}</Valid>
+            <Valid>
+              {errors.email && <ErrorText>{errors.email}</ErrorText>}
+            </Valid>
           </FormTag>
 
           <FormTag>
@@ -233,8 +235,8 @@ const ErrorText = styled.p`
   font-size: 12px;
   margin: 5px;
 `;
-const Valid=styled.div`
-  width:auto;
-  height:15px;
-  padding-bottom:5px;
-`
+const Valid = styled.div`
+  width: auto;
+  height: 15px;
+  padding-bottom: 5px;
+`;
