@@ -1,67 +1,87 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Eye, EyeOff } from "lucide-react";
-import ButtonSignIn from "../UI/button/ButtonSignIn";
 
 const SignIn = () => {
-  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ login: "", password: "" });
 
   useEffect(() => {
-    const savedLogin = localStorage.getItem("login");
+    const savedEmail = localStorage.getItem("email");
     const savedPassword = localStorage.getItem("password");
-    if (savedLogin) setLogin(savedLogin);
+    if (savedEmail) setEmail(savedEmail);
     if (savedPassword) setPassword(savedPassword);
   }, []);
 
-  const handleLoginChange = (e) => {
-    setLogin(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+  };
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return passwordRegex.test(password);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let isValid = true;
-    const newErrors = { login: "", password: "" };
+    const newErrors = { email: "", password: "" };
 
-    if (!login) {
-      newErrors.login = "Логин не может быть пустым";
+    if (!email) {
+      newErrors.email = "E-mail не может быть пустым";
+      isValid = false;
+    } else if (!validateEmail(email)) {
+      newErrors.email = "Некорректный формат e-mail";
       isValid = false;
     }
+
     if (!password) {
       newErrors.password = "Пароль не может быть пустым";
+      isValid = false;
+    } else if (!validatePassword(password)) {
+      newErrors.password =
+        "Пароль должен содержать минимум 8 символов, хотя бы одну букву и одну цифру и с большой буквы";
       isValid = false;
     }
 
     setErrors(newErrors);
 
     if (isValid) {
-      localStorage.setItem("login", login);
+      localStorage.setItem("email", email);
       localStorage.setItem("password", password);
       alert("Данные сохранены!");
+
+      setEmail("");
+      setPassword("");
     }
   };
+
   return (
     <MainSignInDiv>
       <ContentSection>
         <h1>Вход</h1>
         <Forma onSubmit={handleSubmit}>
           <FormTag>
-            <label htmlFor="login">Логин</label>
+            <label htmlFor="email">E-mail</label>
             <input
-              type="text"
-              placeholder="Введите логин"
-              id="login"
-              value={login}
-              onChange={handleLoginChange}
+              type="email"
+              placeholder="Введите e-mail"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
             />
-            {errors.login && <ErrorText>{errors.login}</ErrorText>}
+            {errors.email && <ErrorText>{errors.email}</ErrorText>}
           </FormTag>
 
           <FormTag>
@@ -83,7 +103,7 @@ const SignIn = () => {
             </PasswordWrapper>
             {errors.password && <ErrorText>{errors.password}</ErrorText>}
           </FormTag>
-          <ButtonSignIn type="submit">Войти</ButtonSignIn>
+          <Bbutton type="submit">Войти</Bbutton>
         </Forma>
 
         <TextDiv>
@@ -105,7 +125,17 @@ const MainSignInDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
+const Bbutton = styled.button`
+  width: 400px;
+  height: 54px;
+  border: none;
+  color: white;
+  background-color: #4a4c6c;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: lighter;
+  cursor: pointer;
+`;
 const ContentSection = styled.section`
   width: 500px;
   height: auto;
