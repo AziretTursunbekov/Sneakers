@@ -1,5 +1,9 @@
+import SignIn from "./components/auth/sign/SignIn";
+
 const App = () => {
-  return <div></div>;
+  return <div>
+    <SignIn/>
+  </div>;
 };
 
 export default App;
