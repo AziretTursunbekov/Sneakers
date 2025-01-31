@@ -60,7 +60,7 @@ const SignIn = () => {
     if (isValid) {
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
-      alert("Данные сохранены!");
+      alert("Данные сохранены!!");
 
       setEmail("");
       setPassword("");
