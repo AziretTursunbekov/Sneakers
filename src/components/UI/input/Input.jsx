@@ -16,9 +16,13 @@ const Input = ({ type, value, onChange, placeholder, disabled, ...props }) => {
 export default Input;
 
 const StyledInput = styled.input`
-  width: 408px;
+  width: 400px;
   height: 48px;
+  border: 1px solid #8a8585;
   border-radius: 4px;
-  border-color: #4a4c6c;
-  padding: 24px;
+  padding-left: 10px;
+  ::placeholder {
+    font-size: 16px;
+    font-family: sans-serif;
+  }
 `;
