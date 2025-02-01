@@ -1,9 +1,9 @@
 import React from "react";
 import Facebook from "../../assets/icons/Facebook.svg";
-import instagram from "../../assets/icons/Instagram.svg";
+import Instagram from "../../assets/icons/Instagram.svg";
 import Ix from "../../assets/icons/VectorX.svg";
 import In from "../../assets/icons/VectorIn.svg";
-import youtube from "../../assets/icons/VectorYouTube.svg";
+import YouTube from "../../assets/icons/VectorYouTube.svg";
 const Footer = ({ children }) => {
   return (
     <footer style={styles.footer}>
@@ -32,10 +32,10 @@ const Footer = ({ children }) => {
 
             <div style={styles.iconss}>
               <img src={Facebook} alt="" />
-              <img src={instagram} alt="" />
+              <img src={Instagram} alt="" />
               <img src={Ix} alt="" />
               <img src={In} alt="" />
-              <img src={youtube} alt="" />
+              <img src={YouTube} alt="" />
             </div>
           </div>
 
@@ -106,6 +106,7 @@ const styles = {
   iconss: {
     display: "flex",
     gap: "20px",
+    cursor: "pointer",
   },
   container: {
     backgroundColor: "#333333",
@@ -127,11 +128,11 @@ const styles = {
   },
   fhfhstyLe: {
     display: "flex",
-    gap: "40px",
+    gap: "30px",
   },
   rightDiv: {
     display: "flex",
-    gap: "30px",
+    gap: "20px",
     flexDirection: "column",
   },
   link: {
