@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Eye, EyeOff } from "lucide-react";
 
@@ -6,7 +6,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({ login: "", password: "" });
+  const [errors, setErrors] = useState({ email: "", password: "" });
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("email");
@@ -22,6 +22,7 @@ const SignIn = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -51,7 +52,7 @@ const SignIn = () => {
       isValid = false;
     } else if (!validatePassword(password)) {
       newErrors.password =
-        "Пароль должен содержать минимум 8 символов, хотя бы одну букву и одну цифру и с большой буквы";
+        "Пароль должен содержать минимум 8 символов, хотя бы одну букву и одну цифру и с большой буквы!";
       isValid = false;
     }
 
@@ -60,13 +61,12 @@ const SignIn = () => {
     if (isValid) {
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
-      alert("Данные сохранены!!!");
+      alert("Данные сохранены!");
 
       setEmail("");
       setPassword("");
     }
   };
-
   return (
     <MainSignInDiv>
       <ContentSection>
@@ -81,7 +81,9 @@ const SignIn = () => {
               value={email}
               onChange={handleEmailChange}
             />
-            {errors.email && <ErrorText>{errors.email}</ErrorText>}
+            <Valid>
+              {errors.email && <ErrorText>{errors.email}</ErrorText>}
+            </Valid>
           </FormTag>
 
           <FormTag>
@@ -101,7 +103,9 @@ const SignIn = () => {
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </EyeButton>
             </PasswordWrapper>
-            {errors.password && <ErrorText>{errors.password}</ErrorText>}
+            <Valid>
+              {errors.password && <ErrorText>{errors.password}</ErrorText>}
+            </Valid>
           </FormTag>
           <Bbutton type="submit">Войти</Bbutton>
         </Forma>
@@ -117,7 +121,6 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
 const MainSignInDiv = styled.div`
   width: 100%;
   height: 100vh;
@@ -125,17 +128,7 @@ const MainSignInDiv = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const Bbutton = styled.button`
-  width: 400px;
-  height: 54px;
-  border: none;
-  color: white;
-  background-color: #4a4c6c;
-  font-size: 20px;
-  font-family: sans-serif;
-  font-weight: lighter;
-  cursor: pointer;
-`;
+
 const ContentSection = styled.section`
   width: 500px;
   height: auto;
@@ -152,7 +145,17 @@ const ContentSection = styled.section`
     font-weight: lighter;
   }
 `;
-
+const Bbutton = styled.button`
+  width: 400px;
+  height: 54px;
+  border: none;
+  color: white;
+  background-color: #4a4c6c;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: lighter;
+  cursor: pointer;
+`;
 const ATag = styled.a`
   font-weight: bold;
 `;
@@ -225,10 +228,15 @@ const TextDiv = styled.div`
 const Forma = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 `;
 const ErrorText = styled.p`
   color: red;
   font-size: 12px;
   margin: 5px;
+`;
+const Valid = styled.div`
+  width: auto;
+  height: 15px;
+  padding-bottom: 5px;
 `;
