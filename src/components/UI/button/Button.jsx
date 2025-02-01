@@ -1,38 +1,45 @@
 import React from "react";
 import styled from "styled-components";
 
-const Button = ({ children, type, onClick, variant, ...props }) => {
+const Button = ({ children, type, onClick, variant, disabled, ...props }) => {
   return (
     <div>
-      <button type={type} onClick={onClick} variant={variant} {...props}>
+      <StyledButton
+        type={type}
+        onClick={onClick}
+        variant={variant}
+        disabled={disabled}
+        {...props}
+      >
         {children}
-      </button>
+      </StyledButton>
     </div>
   );
 };
 
 export default Button;
 
-const Buttons = styled.button`
+const StyledButton = styled.button`
   width: 400px;
   height: 54px;
   border: none;
-
-  color: ${(prop) =>
-    prop.variant === "sign"
+  cursor: pointer;
+  color: ${(props) =>
+    props.variant === "sign"
       ? "#FAFAFA"
-      : prop.variant === "images"
+      : props.variant === "images"
       ? "#F4F4F4"
-      : "#000000"};
-
-  background: ${(prop) =>
-    prop.variant === "outlined"
+      : props.variant === "contained"
+      ? "#FFFF"
+      : "none"};
+  background: ${(props) =>
+    props.variant === "outlined"
       ? "transparent"
-      : prop.variant === "contained"
+      : props.variant === "contained"
       ? "#000000"
-      : prop.variant === "sign"
+      : props.variant === "sign"
       ? "#4A4C6C"
-      : prop.variant === "trend"
+      : props.variant === "trend"
       ? "#77794E"
       : "none"};
 `;
