@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { images } from "../../../utils/constans";
+import { images } from "../../utils/constans";
 
 export default function Slider() {
   const [state, setState] = useState(0);
