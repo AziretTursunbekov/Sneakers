@@ -51,7 +51,7 @@ export default function ImageKross() {
                 border: "4px solid #7C7EA1",
                 fontSize: "20px",
                 color: "white",
-                marginRight:"40px"
+                marginRight: "40px",
               }}
             >
               NEW ARRIVALS
@@ -263,7 +263,7 @@ const StdTitle = styled.h1`
   font-size: 16px;
   font-weight: 500;
   font-family: "Geist", sans-serif;
-  `;
+`;
 
 const StdPrice = styled.p`
   font-family: "Geist", sans-serif;
