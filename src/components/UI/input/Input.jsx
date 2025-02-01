@@ -1,43 +1,24 @@
-import React from "react";
-import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 
-const Input = ({
-  type = "text",
-  value,
-  onChange,
-  placeholder = "",
-  className = "",
-  disabled = false,
-  ...props
-}) => {
+const Input = ({ type, value, onChange, placeholder, disabled, ...props }) => {
   return (
-    <>
-      <GlobalStyle />
-      <div>
-        <input
-          type={type}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          className={Input`${className}`}
-          disabled={disabled}
-          {...props}
-        />
-      </div>
-    </>
+    <StyledInput
+      type={type}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      disabled={disabled}
+      {...props}
+    />
   );
 };
 
 export default Input;
 
-const GlobalStyle = createGlobalStyle`
-  input{
-    width: 408px;
-    height: 48px;
-    border-radius: 4px;
-    border-color: #4A4C6C;
-    padding: 24px;
-  }
-
-
+const StyledInput = styled.input`
+  width: 408px;
+  height: 48px;
+  border-radius: 4px;
+  border-color: #4a4c6c;
+  padding: 24px;
 `;
