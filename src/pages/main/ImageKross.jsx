@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { Icons } from "../../assets";
 import { imageKrossMap } from "../../utils/constans";
-
+ 
 export default function ImageKross() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [counter, setCounter] = useState(4);
