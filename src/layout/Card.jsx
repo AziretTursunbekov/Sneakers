@@ -23,11 +23,15 @@ export default function Card() {
 
                     <StdImage src={item.image} />
                     <StdBtnCard onClick={() => addToCart(item)}>
-                      delete To Cart
+                      Delete From Cart
                     </StdBtnCard>
                     <StdTitle>{item.name}</StdTitle>
                     <StdPrice2>
-                      {item.price} <StdOldPrice>{item.oldPrice}</StdOldPrice>
+                      <span style={{ color: item.oldPrice ? "red" : "black" }}>
+                        ${item.price}
+                        {"    "}
+                      </span>
+                      <StdOldPrice>{item.oldPrice}</StdOldPrice>
                     </StdPrice2>
                     <StayleDivStdStars>
                       <StdStars src={item.rating} />
