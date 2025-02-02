@@ -22,6 +22,7 @@ export const CardProvider = ({ children }) => {
   );
 };
 
+
 export const useCart = () => {
   const context = useContext(CardContext);
   if (!context) {
