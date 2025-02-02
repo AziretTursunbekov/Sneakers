@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { useCart } from "../context/CardContext";
 import { Icons } from "../assets";
+import Button from "../components/UI/button/Button";
 
 export default function Card() {
   const { cartItems, addToCart } = useCart();
@@ -22,7 +23,10 @@ export default function Card() {
                     </StayleHeart>
 
                     <StdImage src={item.image} />
-                    <StdBtnCard onClick={() => addToCart(item)}>
+                    <StdBtnCard
+                      onClick={() => addToCart(item)}
+                      variant={"contained"}
+                    >
                       Delete From Cart
                     </StdBtnCard>
                     <StdTitle>{item.name}</StdTitle>
@@ -132,24 +136,20 @@ const fadeInUp = keyframes`
     transform: translate3d(0, 0, 0);
   }
 `;
-const StdBtnCard = styled.button`
+const StdBtnCard = styled(Button)`
   width: 270px;
   height: 41px;
   position: absolute;
   top: 209px;
   left: 0;
-  background-color: black;
-  color: white;
   justify-content: center;
   align-items: center;
   display: none;
   transition: display 0.3s ease;
-  cursor: pointer;
   &:hover & {
     width: 270px;
     height: 41px;
     background-color: #333;
-    color: white;
     display: flex;
     animation-name: ${fadeInUp};
     animation-duration: 0.5s;
