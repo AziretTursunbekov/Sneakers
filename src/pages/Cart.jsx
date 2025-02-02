@@ -23,7 +23,7 @@ export default function Card() {
 
                     <StdImage src={item.image} />
                     <StdBtnCard onClick={() => addToCart(item)}>
-                      delete To Cart
+                      Delete From Cart
                     </StdBtnCard>
                     <StdTitle>{item.name}</StdTitle>
                     <StdPrice2>
@@ -166,4 +166,3 @@ const StdStars = styled.img`
   height: 20px;
   padding-right: 40px;
 `;
-
