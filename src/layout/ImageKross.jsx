@@ -1,13 +1,14 @@
 import { imageKrossMap, imageKross } from "../utils/constans";
 import { Icons } from "../assets";
 import { useState } from "react";
-import styled, { keyframes } from "styled-components";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/CardContext";
+import Button from "../components/UI/button/Button";
+import styled from "styled-components";
 
 export default function ImageKross() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [counter, setCounter] = useState(4);
-  const {cartItems, addToCart}=useCart()
+  const { cartItems, addToCart } = useCart();
 
   const itemsPerPage = counter;
   const handleClickShop = () => {
@@ -44,33 +45,35 @@ export default function ImageKross() {
           }}
         >
           <div>
-            <button
-              style={{
-                backgroundColor: "#4A4C6C",
-                borderRadius: "100px",
-                width: "215px",
-                height: "57px",
-                border: "4px solid #7C7EA1",
-                fontSize: "20px",
-                color: "white",
-                marginRight: "40px",
-              }}
-            >
-              NEW ARRIVALS
-            </button>
-            <button
-              style={{
-                backgroundColor: "#77794E",
-                borderRadius: "100px",
-                width: "215px",
-                height: "57px",
-                border: "4px solid #9FA16D",
-                fontSize: "20px",
-                color: "white",
-              }}
-            >
-              WHAT’S TRENDING
-            </button>
+            <div style={{ display: "flex" }}>
+              <Button
+                style={{
+                  backgroundColor: "#4A4C6C",
+                  borderRadius: "100px",
+                  width: "215px",
+                  height: "57px",
+                  border: "4px solid #7C7EA1",
+                  fontSize: "20px",
+                  color: "white",
+                  marginRight: "40px",
+                }}
+              >
+                NEW ARRIVALS
+              </Button>
+              <Button
+                style={{
+                  backgroundColor: "#77794E",
+                  borderRadius: "100px",
+                  width: "215px",
+                  height: "57px",
+                  border: "4px solid #9FA16D",
+                  fontSize: "20px",
+                  color: "white",
+                }}
+              >
+                WHAT’S TRENDING
+              </Button>
+            </div>
             <StdMiniContain>
               {imageKrossMap.map((item) => (
                 <StdMiniCard key={item.id}>
@@ -82,7 +85,7 @@ export default function ImageKross() {
                     )}
                   </StayleHeart>
                   <StdImage src={item.image} />
-                  <StdBtnCard>Add To Card</StdBtnCard>
+                  <StBtn>Add To Card</StBtn>
                   <StdTitle>{item.name} </StdTitle>
                   <StdPrice2>
                     <span style={{ color: item.oldPrice ? "red" : "black" }}>
@@ -137,7 +140,7 @@ export default function ImageKross() {
                       )}
                     </StayleHeart>
                     <StdImage src={item.image} />
-                    <StdBtnCard>Add To Card</StdBtnCard>
+                    <StBtn>Add To Card</StBtn>
                     <StdTitle>{item.name} </StdTitle>
                     <StdPrice2>
                       <span style={{ color: item.oldPrice ? "red" : "black" }}>
@@ -249,20 +252,6 @@ const StdMiniContain = styled.div`
   flex-wrap: wrap;
 `;
 
-const StdMiniCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 270px;
-  height: 350px;
-  justify-content: flex-start;
-  gap: 10px;
-  position: relative;
-  &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-  }
-`;
-
 const StdImage = styled.img`
   width: 270px;
   height: 250px;
@@ -283,18 +272,20 @@ const StdPrice = styled.p`
   position: relative;
   right: 30px;
 `;
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translate3d(0, 50%, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+const StdMiniCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+  height: 350px;
+  justify-content: flex-start;
+  gap: 10px;
+  position: relative;
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
   }
 `;
-const StdBtnCard = styled.button`
+const StBtn = styled.button`
   width: 270px;
   height: 41px;
   position: absolute;
@@ -313,7 +304,6 @@ const StdBtnCard = styled.button`
     background-color: #333;
     color: white;
     display: flex;
-    animation-name: ${fadeInUp};
     animation-duration: 0.5s;
     animation-fill-mode: both;
   }

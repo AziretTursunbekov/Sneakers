@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../context/CardContext";
 import { Icons } from "../assets";
 
 export default function Card() {
@@ -166,4 +166,3 @@ const StdStars = styled.img`
   height: 20px;
   padding-right: 40px;
 `;
-

@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
 
-const CartContext = createContext();
+const CardContext = createContext();
 
-export const CartProvider = ({ children }) => {
+export const CardProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const addToCart = (item) => {
@@ -17,14 +17,14 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart }}>
+    <CardContext.Provider value={{ cartItems, addToCart }}>
       {children}
-    </CartContext.Provider>
+    </CardContext.Provider>
   );
 };
 
 export const useCart = () => {
-  const context = useContext(CartContext);
+  const context = useContext(CardContext);
   if (!context) {
     throw new Error("useCart must be used within a CartProvider");
   }
