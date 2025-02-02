@@ -4,7 +4,6 @@ const CardContext = createContext();
 
 export const CardProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
-
   const addToCart = (item) => {
     setCartItems((prev) => {
       const isItemInCart = prev.some((cartItem) => cartItem.id === item.id);
