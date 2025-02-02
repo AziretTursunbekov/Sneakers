@@ -4,56 +4,151 @@ export const images = [
   "src/assets/image/SneakersRed.png",
   "src/assets/image/SneakersWhite.png",
 ];
-const generateRandomItem = (id) => {
-  const names = [
-    "Ergonomic Gaming Mouse",
-    "Mechanical Keyboard",
-    "Wireless Gaming Headset",
-    "High-Performance CPU Cooler",
-    "RGB Gaming Mouse Pad",
-    "Curved Gaming Monitor",
-    "Gaming Chair",
-    "VR Headset",
-    "External SSD",
-    "Portable Bluetooth Speaker",
-    "Gaming Mouse Bungee",
-    "Laptop Cooling Pad",
-    "Graphics Card",
-    "RAM Module",
-    "Motherboard",
-    "Power Supply Unit",
-    "Webcam",
-    "Microphone",
-    "Desk Lamp",
-    "Office Chair",
-  ];
-
-  const imagePaths = [
-    "src/assets/image/SneakersWhite.png",
-    "src/assets/image/SneakersRed.png",
-    "src/assets/image/SneakersBlue.png",
-    "src/assets/image/SneakersGreen.png",
-  ];
-  const randomNameIndex = Math.floor(Math.random() * names.length);
-  const randomImageIndex = Math.floor(Math.random() * imagePaths.length);
-  const randomPrice = Math.floor(Math.random() * 400) + 20;
-  const oldPrice = Math.random() > 0.7 ? Math.floor(randomPrice * 1.2) : null;
-  const randomRating =
-    Math.random() > 0.5
-      ? "src/assets/icons/FourStars.svg"
-      : "src/assets/icons/FiveStars.svg";
-  const randomReviews = Math.floor(Math.random() * 300) + 20;
-  return {
-    id: id,
-    name: names[randomNameIndex],
-    price: randomPrice,
-    oldPrice: oldPrice,
-    rating: randomRating,
-    reviews: randomReviews,
-    image: imagePaths[randomImageIndex],
-  };
-};
-
-export const imageKrossMap = Array.from({ length: 8 }, (_, i) =>
-  generateRandomItem(i + 1)
-);
+export const imageKrossMap = [
+  {
+    id: 1,
+    name: "Ergonomic Gaming Mouse",
+    price: 49,
+    oldPrice: null,
+    rating: "src/assets/icons/FourStars.svg",
+    reviews: 125,
+    image: "src/assets/image/SneakersWhite.png",
+  },
+  {
+    id: 2,
+    name: "Mechanical Keyboard",
+    price: 129,
+    oldPrice: 159,
+    rating: "src/assets/icons/FiveStars.svg",
+    reviews: 210,
+    image: "src/assets/image/SneakersRed.png",
+  },
+  {
+    id: 3,
+    name: "Wireless Gaming Headset",
+    price: 89,
+    oldPrice: null,
+    rating: "src/assets/icons/FiveStars.svg",
+    reviews: 88,
+    image: "src/assets/image/SneakersBlue.png",
+  },
+  {
+    id: 4,
+    name: "High-Performance CPU Cooler",
+    price: 69,
+    oldPrice: 79,
+    rating: "src/assets/icons/FourStars.svg",
+    reviews: 180,
+    image: "src/assets/image/SneakersGreen.png",
+  },
+  {
+    id: 5,
+    name: "RGB Gaming Mouse Pad",
+    price: 29,
+    oldPrice: null,
+    rating: "src/assets/icons/FiveStars.svg",
+    reviews: 250,
+    image: "src/assets/image/SneakersBlue.png",
+  },
+  {
+    id: 6,
+    name: "Curved Gaming Monitor",
+    price: 349,
+    oldPrice: 399,
+    rating: "src/assets/icons/FourStars.svg",
+    reviews: 92,
+    image: "src/assets/image/SneakersGreen.png",
+  },
+  {
+    id: 7,
+    name: "Gaming Chair",
+    price: 199,
+    oldPrice: null,
+    rating: "src/assets/icons/FiveStars.svg",
+    reviews: 56,
+    image: "src/assets/image/SneakersRed.png",
+  },
+  {
+    id: 8,
+    name: "VR Headset",
+    price: 449,
+    oldPrice: 499,
+    rating: "src/assets/icons/FourStars.svg",
+    reviews: 120,
+    image: "src/assets/image/SneakersWhite.png",
+  },
+];
+export const imageKross = [
+  {
+    id: 9,
+    name: "Ergonomic Gaming Mouse",
+    price: 49,
+    oldPrice: null,
+    rating: "src/assets/icons/FourStars.svg",
+    reviews: 125,
+    image: "src/assets/image/SneakersWhite.png",
+  },
+  {
+    id: 10,
+    name: "Mechanical Keyboard",
+    price: 129,
+    oldPrice: 159,
+    rating: "src/assets/icons/FiveStars.svg",
+    reviews: 210,
+    image: "src/assets/image/SneakersRed.png",
+  },
+  {
+    id: 11,
+    name: "Wireless Gaming Headset",
+    price: 89,
+    oldPrice: null,
+    rating: "src/assets/icons/FiveStars.svg",
+    reviews: 88,
+    image: "src/assets/image/SneakersBlue.png",
+  },
+  {
+    id: 12,
+    name: "High-Performance CPU Cooler",
+    price: 69,
+    oldPrice: 79,
+    rating: "src/assets/icons/FourStars.svg",
+    reviews: 180,
+    image: "src/assets/image/SneakersGreen.png",
+  },
+  {
+    id: 13,
+    name: "RGB Gaming Mouse Pad",
+    price: 29,
+    oldPrice: null,
+    rating: "src/assets/icons/FiveStars.svg",
+    reviews: 250,
+    image: "src/assets/image/SneakersBlue.png",
+  },
+  {
+    id: 14,
+    name: "Curved Gaming Monitor",
+    price: 349,
+    oldPrice: 399,
+    rating: "src/assets/icons/FourStars.svg",
+    reviews: 92,
+    image: "src/assets/image/SneakersGreen.png",
+  },
+  {
+    id: 15,
+    name: "Gaming Chair",
+    price: 199,
+    oldPrice: null,
+    rating: "src/assets/icons/FiveStars.svg",
+    reviews: 56,
+    image: "src/assets/image/SneakersRed.png",
+  },
+  {
+    id: 16,
+    name: "VR Headset",
+    price: 449,
+    oldPrice: 499,
+    rating: "src/assets/icons/FourStars.svg",
+    reviews: 120,
+    image: "src/assets/image/SneakersWhite.png",
+  },
+];

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import { imageKrossMap, imageKross } from "../utils/constans";
 import { Icons } from "../assets";
-import { imageKrossMap } from "../utils/constans";
- 
+import { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import { useCart } from "../context/CartContext";
+
 export default function ImageKross() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [counter, setCounter] = useState(4);
+  const {cartItems, addToCart}=useCart()
 
   const itemsPerPage = counter;
   const handleClickShop = () => {
@@ -72,8 +74,12 @@ export default function ImageKross() {
             <StdMiniContain>
               {imageKrossMap.map((item) => (
                 <StdMiniCard key={item.id}>
-                  <StayleHeart>
-                    <Icons.Heart />
+                  <StayleHeart onClick={() => addToCart(item)}>
+                    {cartItems.some((cartItem) => cartItem.id === item.id) ? (
+                      <Icons.Frame />
+                    ) : (
+                      <Icons.Heart />
+                    )}
                   </StayleHeart>
                   <StdImage src={item.image} />
                   <StdBtnCard>Add To Card</StdBtnCard>
@@ -81,7 +87,7 @@ export default function ImageKross() {
                   <StdPrice2>
                     <span style={{ color: item.oldPrice ? "red" : "black" }}>
                       ${item.price}
-                      {"    "}
+                      {"   "}
                     </span>
                     <StdOldPrice>{item.oldPrice}</StdOldPrice>
                   </StdPrice2>
@@ -99,7 +105,6 @@ export default function ImageKross() {
               <StyleSELLING>
                 BEST <span style={{ color: "black" }}>SELL</span>ING
               </StyleSELLING>
-
               <div style={{ display: "flex" }}>
                 <PrevButton onClick={handlePrev}>
                   <Icons.ArrowL />
@@ -113,25 +118,33 @@ export default function ImageKross() {
             </SliderControls>
             <div style={{ display: "flex" }}>
               <StyleOpen onClick={handleClickShop}>
-                <StyleOpenSpan>open ⬇</StyleOpenSpan>
+                <StyleOpenSpan>open &#11014;</StyleOpenSpan>
               </StyleOpen>
               <StyleHidden onClick={handleClick}>
-                <StyleHiddenSpan>hide ⬆</StyleHiddenSpan>
+                <StyleHiddenSpan>hide &#11015;</StyleHiddenSpan>
               </StyleHidden>
             </div>
             <StdMiniContain>
-              {imageKrossMap
+              {imageKross
                 .slice(currentIndex, currentIndex + itemsPerPage)
                 .map((item) => (
                   <StdMiniCard key={item.id}>
-                    <StayleHeart>
-                      <Icons.Heart />
+                    <StayleHeart onClick={() => addToCart(item)}>
+                      {cartItems.some((cartItem) => cartItem.id === item.id) ? (
+                        <Icons.Frame />
+                      ) : (
+                        <Icons.Heart />
+                      )}
                     </StayleHeart>
                     <StdImage src={item.image} />
                     <StdBtnCard>Add To Card</StdBtnCard>
                     <StdTitle>{item.name} </StdTitle>
                     <StdPrice2>
-                      ${item.price} <StdOldPrice>{item.oldPrice}</StdOldPrice>
+                      <span style={{ color: item.oldPrice ? "red" : "black" }}>
+                        ${item.price}
+                        {"    "}
+                      </span>
+                      <StdOldPrice>{item.oldPrice}</StdOldPrice>
                     </StdPrice2>
                     <StayleDivStdStars>
                       <StdStars src={item.rating} />
@@ -179,9 +192,7 @@ const StyleOpen = styled.button`
   align-items: center;
   font-weight: 700;
   text-transform: uppercase;
-
   font-family: "Geist", sans-serif;
-
   font-size: 29.5px;
 `;
 const StyleHidden = styled.button`
@@ -242,7 +253,7 @@ const StdMiniCard = styled.div`
   display: flex;
   flex-direction: column;
   width: 270px;
-  height: 370px;
+  height: 350px;
   justify-content: flex-start;
   gap: 10px;
   position: relative;
