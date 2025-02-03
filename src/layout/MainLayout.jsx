@@ -36,14 +36,19 @@ export const MainLayout = () => {
   }
 
   return (
-    <div>
+    <StyledLayout>
       <Header />
       <Content>{content}</Content>
       <Footer />
-    </div>
+    </StyledLayout>
   );
 };
 
 const Content = styled.div`
   margin-top: 90px;
+`;
+const StyledLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 `;

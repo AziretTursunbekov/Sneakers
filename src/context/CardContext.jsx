@@ -1,10 +1,9 @@
 import React, { createContext, useContext, useState } from "react";
-import { imageKrossMap } from "../utils/constans";
 
 const CardContext = createContext();
 
 export const CardProvider = ({ children }) => {
-  const [state, setState] = useState(imageKrossMap);
+  const [state, setState] = useState([]);
   const [cart, setCart] = useState([]);
 
   const addToFavorite = (item) => {

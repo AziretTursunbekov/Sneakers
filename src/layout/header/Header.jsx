@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import llogo from "../../assets/icons/LogoHeader.svg";
 import basked from "../../assets/icons/Vector.svg";
@@ -6,14 +6,29 @@ import like from "../../assets/icons/Heart.svg";
 import person from "../../assets/icons/Man.svg";
 import { motion } from "framer-motion";
 import { RouteContext } from "../../context/RouteContext";
+import { useCart } from "../../context/CardContext";
+import Button from "../../components/UI/button/Button";
+import { useAuth } from "../../context/AuthContext";
+import Modal from "../../components/UI/modal/Modal";
 
 export const Header = () => {
   const title = "SNEAKERS".split("");
   const { onPathChange } = useContext(RouteContext);
+  const { state, cart } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
+  const { signOut } = useAuth();
+  const toggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
   return (
     <MainHeaderDiv>
       <NavTag>
-        <img src={llogo} alt="this is loggo" />
+        <img
+          onClick={() => onPathChange("/")}
+          src={llogo}
+          alt="this is loggo"
+          style={{ cursor: "pointer" }}
+        />
         <a href="#">Woman</a>
         <a href="#">Man</a>
         <a href="#">Kids</a>
@@ -43,29 +58,50 @@ export const Header = () => {
         ))}
       </Logo>
       <DivButtons>
-        <button onClick={() => onPathChange("favorite")}>
-          {console.log("dsfdsf")}
+        <StyledBTN
+          variant={"outlined"}
+          onClick={() => onPathChange("favorite")}
+        >
+          {state.length < 0 && null}
+          {state.length > 0 && <Staylelength>{state.length}</Staylelength>}
           <ImgTag src={like} alt="" />
-        </button>
-        <button>
+        </StyledBTN>
+        <StyledBTN variant={"outlined"} onClick={() => onPathChange("cart")}>
+          {cart.length < 0 && null}
+          {cart.length > 0 && <Staylelength>{cart.length}</Staylelength>}
+
           <ImgTag src={basked} alt="" />
-        </button>
-        <button>
+        </StyledBTN>
+        <StyledBTN variant={"outlined"} onClick={() => setIsOpen(toggleModal)}>
           <ImgTag src={person} alt="" />
-        </button>
+          <Modal open={isOpen} onClose={() => setIsOpen(toggleModal)}>
+            <button onClick={signOut}>sign out</button>
+          </Modal>
+        </StyledBTN>
       </DivButtons>
     </MainHeaderDiv>
   );
 };
+const Staylelength = styled.span`
+  position: absolute;
+  left: 13px;
+  bottom: 5px;
+  z-index: 1;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0px 4px;
+`;
 const MainHeaderDiv = styled.div`
   width: 100%;
   height: 90px;
   display: flex;
+  top: 0;
   justify-content: space-between;
   align-items: center;
   padding-left: 50px;
   padding-right: 50px;
-  background-color: transparent;
+  background-color: white;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   position: fixed;
   z-index: 1000;
@@ -99,10 +135,18 @@ const Logo = styled.section`
 `;
 const DivButtons = styled.div`
   display: flex;
-  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
   button {
     border: none;
     background-color: transparent;
     cursor: pointer;
   }
+`;
+const StyledBTN = styled(Button)`
+  position: relative;
+  width: 40px;
+  height: 20px;
+  display: flex;
 `;

@@ -4,13 +4,16 @@ import App from "./App.jsx";
 import "./index.css";
 import { CardProvider } from "./context/CardContext.jsx";
 import { RouteProvider } from "./context/RouteContext.jsx";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouteProvider>
-      <CardProvider>
-        <App />
-      </CardProvider>
-    </RouteProvider>
+    <AuthProvider>
+      <RouteProvider>
+        <CardProvider>
+          <App />
+        </CardProvider>
+      </RouteProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

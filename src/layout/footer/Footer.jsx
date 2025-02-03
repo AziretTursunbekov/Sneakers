@@ -1,157 +1,143 @@
 import React from "react";
-import Facebook from "../../assets/icons/Facebook.svg";
-import Instagram from "../../assets/icons/Instagram.svg";
-import Ix from "../../assets/icons/VectorX.svg";
-import In from "../../assets/icons/VectorIn.svg";
-import YouTube from "../../assets/icons/VectorYouTube.svg";
-const Footer = ({ children }) => {
+import styled from "styled-components";
+import face from "../../assets/icons/Facebook.svg";
+import inst from "../../assets/icons/Instagram.svg";
+import iconss from "../../assets/icons/VectorX.svg";
+import vectorin from "../../assets/icons/VectorIn.svg";
+import you from "../../assets/icons/VectorYouTube.svg";
+
+const Footer = () => {
   return (
-    <footer style={styles.footer}>
-      <div style={styles.container}>
-        <div>{children}</div>
-        <div style={styles.mainContainer}>
-          <div style={styles.leftStyle}>
-            <h1 style={styles.logo}>LOGO</h1>
+    <MainFooter>
+      <SectionAbout>
+        <TextDiv>
+          <h1>Logo</h1>
+          <Adress>
+            <h4>Address:</h4>
+            <p>USA, California</p>
+          </Adress>
+          <Contact>
+            <h4>Contact:</h4>
+            <a href="#">1800 123 4567</a>
+            <a href="#">javaria.y2b@gmail.com</a>
+          </Contact>
+          <Icons>
+            <img src={face} alt="" />
+            <img src={inst} alt="" />
+            <img src={iconss} alt="" />
+            <img src={vectorin} alt="" />
+            <img src={you} alt="" />
+          </Icons>
+        </TextDiv>
 
-            <div>
-              <h3 style={styles.subTitle}>Address:</h3>
-              <a href="" style={styles.link}>
-                USA, California
-              </a>
-            </div>
-
-            <div>
-              <h3 style={styles.subTitle}>Contact:</h3>
-              <a href="" style={styles.link}>
-                <p style={styles.text}>1800 123 4567</p>
-              </a>
-              <a href="" style={styles.link}>
-                <p style={styles.text}>javaria.y2b@gmail.com</p>
-              </a>
-            </div>
-
-            <div style={styles.iconss}>
-              <img src={Facebook} alt="" />
-              <img src={Instagram} alt="" />
-              <img src={Ix} alt="" />
-              <img src={In} alt="" />
-              <img src={YouTube} alt="" />
-            </div>
-          </div>
-
-          <div style={styles.fhfhstyLe}>
-            <div style={styles.rightDiv}>
-              {[
-                "Link One",
-                "Link Two",
-                "Link Three",
-                "Link Four",
-                "Link Five",
-              ].map((link) => (
-                <div style={styles.innerDiv} key={link}>
-                  <a href="" style={styles.link}>
-                    {link}
-                  </a>
-                </div>
-              ))}
-            </div>
-            <div style={styles.rightDiv}>
-              {[
-                "Link One",
-                "Link Two",
-                "Link Three",
-                "Link Four",
-                "Link Five",
-              ].map((link) => (
-                <div style={styles.innerDiv} key={link}>
-                  <a href="" style={styles.link}>
-                    {link}
-                  </a>
-                </div>
-              ))}
-            </div>
-            <div style={styles.rightDiv}>
-              {[
-                "Link Six",
-                "Link Seven",
-                "Link Eight",
-                "Link Nine",
-                "Link Ten",
-              ].map((link) => (
-                <div style={styles.innerDiv} key={link}>
-                  <a href="" style={styles.link}>
-                    {link}
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <h3 style={styles.footerText}>© 2023 Javaria. All rights reserved.</h3>
-      </div>
-    </footer>
+        <LinkDiv>
+          <FirstColumn>
+            <a href="#">Link one</a>
+            <a href="#">Link two</a>
+            <a href="#">Link three</a>
+            <a href="#">Link four</a>
+            <a href="#">Link five</a>
+          </FirstColumn>
+          <FirstColumn>
+            <a href="#">Link one</a>
+            <a href="#">Link two</a>
+            <a href="#">Link three</a>
+            <a href="#">Link four</a>
+            <a href="#">Link five</a>
+          </FirstColumn>
+          <FirstColumn>
+            <a href="#">Link Six</a>
+            <a href="#">Link Seven</a>
+            <a href="#">Link Eight</a>
+            <a href="#">Link Nine</a>
+            <a href="#">Link Ten</a>
+          </FirstColumn>
+        </LinkDiv>
+      </SectionAbout>
+      <Linia></Linia>
+      <h4>© 2023 Javaria. All rights reserved.</h4>
+    </MainFooter>
   );
 };
 
 export default Footer;
 
-const styles = {
-  footer: {
-    display: "flex",
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-    color: "white",
-  },
-  iconss: {
-    display: "flex",
-    gap: "20px",
-    cursor: "pointer",
-  },
-  container: {
-    backgroundColor: "#333333",
-    width: "100%",
-    height: "520px",
-    padding: "10px",
-  },
-  mainContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "50px 100px",
-    borderBottom: "1px solid white",
-  },
-  leftStyle: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    gap: "50px",
-  },
-  fhfhstyLe: {
-    display: "flex",
-    gap: "30px",
-  },
-  rightDiv: {
-    display: "flex",
-    gap: "20px",
-    flexDirection: "column",
-  },
-  link: {
-    cursor: "pointer",
-    color: "white",
-    textDecoration: "none",
-  },
-  logo: {
-    cursor: "pointer",
-  },
-  subTitle: {
-    paddingBottom: "10px",
-  },
-  footerText: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: "30px",
-    cursor: "pointer",
-  },
-};
+const MainFooter = styled.div`
+  width: 100%;
+  height: auto;
+  background-color: #333333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 58px;
+  padding-bottom: 50px;
+  padding-left: 144px;
+  padding-right: 144px;
+  gap: 43px;
+  h4 {
+    font-weight: 400;
+    font-size: 15px;
+    color: #ffffff;
+  }
+`;
+const Icons=styled.div`
+  display:flex;
+  gap:15px;
+`
+const SectionAbout = styled.section`
+  width: 1281px;
+  height: 259px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const TextDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  h1 {
+    font-size: 27px;
+  }
+`;
+const Adress = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  p {
+    font-weight: lighter;
+    font-style: solid;
+  }
+`;
+const Contact = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  a {
+    color: white;
+    font-style: solid;
+  }
+`;
+const LinkDiv = styled.div`
+  width: 360px;
+  height: 153px;
+  display: flex;
+  gap: 69px;
+`;
+const FirstColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
+`;
+const Linia = styled.div`
+  width: 100%;
+  height: 2px;
+  background-color: white;
+`;

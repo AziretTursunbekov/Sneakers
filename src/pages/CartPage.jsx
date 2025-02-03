@@ -51,6 +51,7 @@ export default function CartPage() {
     </>
   );
 }
+
 const StayleHeart = styled.div`
   position: absolute;
   top: 11px;

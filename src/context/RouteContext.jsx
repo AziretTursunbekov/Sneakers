@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 
-
 export const RouteContext = createContext({});
 
 export const RouteProvider = ({ children }) => {
@@ -18,7 +17,9 @@ export const RouteProvider = ({ children }) => {
   };
 
   return (
-    <RouteContext.Provider value={{ path, onPathChange: handlePathChange }}>
+    <RouteContext.Provider
+      value={{ path, onPathChange: handlePathChange, setPath }}
+    >
       {children}
     </RouteContext.Provider>
   );

@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Eye, EyeOff } from "lucide-react";
 import Button from "../UI/button/Button";
 import Input from "../UI/input/Input";
+import { RouteContext } from "../../context/RouteContext";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({ email: "", password: "" });
-
+  const { onPathChange, setPath } = useContext(RouteContext);
   useEffect(() => {
     const savedEmail = localStorage.getItem("email");
     const savedPassword = localStorage.getItem("password");
@@ -63,8 +64,8 @@ const SignIn = () => {
     if (isValid) {
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
-      alert("Данные сохранены!");
-
+      // alert("Данные сохранены!");
+      setPath("/");
       setEmail("");
       setPassword("");
     }
@@ -109,7 +110,11 @@ const SignIn = () => {
               {errors.password && <ErrorText>{errors.password}</ErrorText>}
             </Valid>
           </FormTag>
-          <Button variant={"sign"} type="submit">
+          <Button
+            variant={"sign"}
+            type="submit"
+            onClick={() => onPathChange("/")}
+          >
             Войти
           </Button>
         </Forma>
