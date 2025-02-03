@@ -7,9 +7,12 @@ import person from "../../assets/icons/Man.svg";
 import Button from "../../components/UI/button/Button";
 import Modal from "../../components/UI/modal/Modal";
 import { motion } from "framer-motion";
+import { useAuth } from "../../context/AuthProvider";
+import { style } from "framer-motion/client";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { signOut } = useAuth();
   const toggleModal = () => {
     setIsOpen((prev) => !prev);
   };
@@ -59,7 +62,7 @@ export const Header = () => {
         >
           <ImgTag src={person} alt="person" />
           <Modal open={isOpen} onClose={() => setIsOpen(toggleModal)}>
-            <Button variant={"outlined"} onClick={()}>sign out</Button>
+            <BtnStyle onClick={signOut}>sign out</BtnStyle>
           </Modal>
         </StyledButton>
       </DivButtons>
@@ -118,4 +121,7 @@ const DivButtons = styled.div`
 const StyledButton = styled(Button)`
   width: 15px;
   height: 15px;
+`;
+const BtnStyle = styled.div`
+  border: none;
 `;

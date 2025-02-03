@@ -32,7 +32,7 @@ const ModalContent = styled.div`
   background: white;
   padding: 20px;
   border-radius: 8px;
-  width: 400px;
+  width: 100px;
   position: relative;
 `;
 
