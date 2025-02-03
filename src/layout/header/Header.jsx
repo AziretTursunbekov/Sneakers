@@ -59,7 +59,7 @@ export const Header = () => {
         >
           <ImgTag src={person} alt="person" />
           <Modal open={isOpen} onClose={() => setIsOpen(toggleModal)}>
-            close
+            <Button variant={"outlined"} onClick={()}>sign out</Button>
           </Modal>
         </StyledButton>
       </DivButtons>
