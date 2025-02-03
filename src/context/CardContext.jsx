@@ -1,9 +1,10 @@
 import React, { createContext, useContext, useState } from "react";
+import { imageKrossMap } from "../utils/constans";
 
 const CardContext = createContext();
 
 export const CardProvider = ({ children }) => {
-  const [state, setState] = useState([]);
+  const [state, setState] = useState(imageKrossMap);
   const [cart, setCart] = useState([]);
 
   const addToFavorite = (item) => {
@@ -29,7 +30,7 @@ export const CardProvider = ({ children }) => {
   };
 
   return (
-    <CardContext.Provider value={{ state, addToFavorite, cart, addToCart}}>
+    <CardContext.Provider value={{ state, addToFavorite, cart, addToCart }}>
       {children}
     </CardContext.Provider>
   );

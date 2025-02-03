@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import llogo from "../../assets/icons/LogoHeader.svg";
 import basked from "../../assets/icons/Vector.svg";
 import like from "../../assets/icons/Heart.svg";
 import person from "../../assets/icons/Man.svg";
 import { motion } from "framer-motion";
+import { RouteContext } from "../../context/RouteContext";
 
 export const Header = () => {
   const title = "SNEAKERS".split("");
+  const { onPathChange } = useContext(RouteContext);
   return (
     <MainHeaderDiv>
       <NavTag>
@@ -24,7 +26,7 @@ export const Header = () => {
           <motion.span
             key={index}
             initial={{ opacity: 0, x: -50 }}
-            animate={{  
+            animate={{
               opacity: 1,
               x: 0,
             }}
@@ -41,7 +43,8 @@ export const Header = () => {
         ))}
       </Logo>
       <DivButtons>
-        <button>
+        <button onClick={() => onPathChange("favorite")}>
+          {console.log("dsfdsf")}
           <ImgTag src={like} alt="" />
         </button>
         <button>
