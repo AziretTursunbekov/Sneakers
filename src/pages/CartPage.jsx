@@ -1,26 +1,26 @@
-import styled, { keyframes } from "styled-components";
+import React from "react";
 import { useCart } from "../context/CardContext";
+import styled, { keyframes } from "styled-components";
 import { Icons } from "../assets";
 
-export default function Card() {
-  const { cartItems, addToCart } = useCart();
+export default function CartPage() {
+  const { state, cart, addToCart, addToFavorite } = useCart();
   return (
     <>
       <StyledContain>
         <div style={{ width: "81%" }}>
           <StdMiniContain>
-            {cartItems.length > 0 && (
+            {cart.length > 0 && (
               <>
-                {cartItems.map((item) => (
+                {cart.map((item) => (
                   <StdMiniCard key={item.id}>
-                    <StayleHeart onClick={() => addToCart(item)}>
-                      {cartItems.some((cartItem) => cartItem.id === item.id) ? (
+                    <StayleHeart onClick={() => addToFavorite(item)}>
+                      {state.some((cartItem) => cartItem.id === item.id) ? (
                         <Icons.Frame />
                       ) : (
                         <Icons.Heart />
                       )}
                     </StayleHeart>
-
                     <StdImage src={item.image} />
                     <StdBtnCard onClick={() => addToCart(item)}>
                       Delete From Cart
@@ -47,7 +47,6 @@ export default function Card() {
     </>
   );
 }
-
 const StayleHeart = styled.div`
   position: absolute;
   top: 11px;

@@ -8,7 +8,8 @@ import styled from "styled-components";
 export default function ImageKross() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [counter, setCounter] = useState(4);
-  const { cartItems, addToCart } = useCart();
+  const { state, addToFavorite } = useCart();
+  const { cart, addToCart } = useCart();
 
   const itemsPerPage = counter;
   const handleClickShop = () => {
@@ -77,15 +78,19 @@ export default function ImageKross() {
             <StdMiniContain>
               {imageKrossMap.map((item) => (
                 <StdMiniCard key={item.id}>
-                  <StayleHeart onClick={() => addToCart(item)}>
-                    {cartItems.some((cartItem) => cartItem.id === item.id) ? (
+                  <StayleHeart onClick={() => addToFavorite(item)}>
+                    {state.some((cartItem) => cartItem.id === item.id) ? (
                       <Icons.Frame />
                     ) : (
                       <Icons.Heart />
                     )}
                   </StayleHeart>
                   <StdImage src={item.image} />
-                  <StBtn>Add To Card</StBtn>
+                  <StBtn onClick={() => addToCart(item)}>
+                    {cart.some((cartItem) => cartItem.id === item.id)
+                      ? "Delete From Cart"
+                      : "Add To Card"}
+                  </StBtn>
                   <StdTitle>{item.name} </StdTitle>
                   <StdPrice2>
                     <span style={{ color: item.oldPrice ? "red" : "black" }}>
@@ -132,15 +137,19 @@ export default function ImageKross() {
                 .slice(currentIndex, currentIndex + itemsPerPage)
                 .map((item) => (
                   <StdMiniCard key={item.id}>
-                    <StayleHeart onClick={() => addToCart(item)}>
-                      {cartItems.some((cartItem) => cartItem.id === item.id) ? (
+                    <StayleHeart onClick={() => addToFavorite(item)}>
+                      {state.some((cartItem) => cartItem.id === item.id) ? (
                         <Icons.Frame />
                       ) : (
                         <Icons.Heart />
                       )}
                     </StayleHeart>
                     <StdImage src={item.image} />
-                    <StBtn>Add To Card</StBtn>
+                    <StBtn onClick={() => addToCart(item)}>
+                      {cart.some((cartItem) => cartItem.id === item.id)
+                        ? "Delete From Cart"
+                        : "Add To Card"}
+                    </StBtn>
                     <StdTitle>{item.name} </StdTitle>
                     <StdPrice2>
                       <span style={{ color: item.oldPrice ? "red" : "black" }}>
@@ -240,6 +249,7 @@ const StyledContain = styled.div`
   justify-content: center;
   flex-direction: column;
   font-family: "Geist", sans-serif;
+  margin-bottom: 50px;
 `;
 
 const StdMiniContain = styled.div`
