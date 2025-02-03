@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import llogo from "../../assets/icons/LogoHeader.svg";
 import basked from "../../assets/icons/Vector.svg";
 import like from "../../assets/icons/Heart.svg";
 import person from "../../assets/icons/Man.svg";
+import Button from "../../components/UI/button/Button";
+import Modal from "../../components/UI/modal/Modal";
 import { motion } from "framer-motion";
 
 export const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleModal = () => {
+    setIsOpen((prev) => !prev);
+  };
   const title = "SNEAKERS".split("");
   return (
     <MainHeaderDiv>
@@ -24,7 +30,7 @@ export const Header = () => {
           <motion.span
             key={index}
             initial={{ opacity: 0, x: -50 }}
-            animate={{  
+            animate={{
               opacity: 1,
               x: 0,
             }}
@@ -41,15 +47,21 @@ export const Header = () => {
         ))}
       </Logo>
       <DivButtons>
-        <button>
+        <StyledButton>
           <ImgTag src={like} alt="" />
-        </button>
-        <button>
+        </StyledButton>
+        <StyledButton>
           <ImgTag src={basked} alt="" />
-        </button>
-        <button>
-          <ImgTag src={person} alt="" />
-        </button>
+        </StyledButton>
+        <StyledButton
+          onClick={() => setIsOpen(toggleModal)}
+          style={{ margin: "0px" }}
+        >
+          <ImgTag src={person} alt="person" />
+          <Modal open={isOpen} onClose={() => setIsOpen(toggleModal)}>
+            close
+          </Modal>
+        </StyledButton>
       </DivButtons>
     </MainHeaderDiv>
   );
@@ -102,4 +114,8 @@ const DivButtons = styled.div`
     background-color: transparent;
     cursor: pointer;
   }
+`;
+const StyledButton = styled(Button)`
+  width: 15px;
+  height: 15px;
 `;
