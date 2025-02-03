@@ -107,6 +107,7 @@ const SignIn = () => {
               {errors.password && <ErrorText>{errors.password}</ErrorText>}
             </Valid>
           </FormTag>
+          <Button></Button>
           <Bbutton type="submit">Войти</Bbutton>
         </Forma>
 

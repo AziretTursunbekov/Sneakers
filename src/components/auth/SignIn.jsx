@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Eye, EyeOff } from "lucide-react";
+import Button from "../UI/button/Button";
+import Input from "../UI/input/Input";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -74,7 +76,7 @@ const SignIn = () => {
         <Forma onSubmit={handleSubmit}>
           <FormTag>
             <label htmlFor="email">E-mail</label>
-            <input
+            <Input
               type="email"
               placeholder="Введите e-mail"
               id="email"
@@ -89,7 +91,7 @@ const SignIn = () => {
           <FormTag>
             <label htmlFor="password">Пароль</label>
             <PasswordWrapper>
-              <PasswordInput
+              <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="Введите пароль"
                 id="password"
@@ -107,7 +109,9 @@ const SignIn = () => {
               {errors.password && <ErrorText>{errors.password}</ErrorText>}
             </Valid>
           </FormTag>
-          <Bbutton type="submit">Войти</Bbutton>
+          <Button variant={"sign"} type="submit">
+            Войти
+          </Button>
         </Forma>
 
         <TextDiv>
@@ -145,17 +149,7 @@ const ContentSection = styled.section`
     font-weight: lighter;
   }
 `;
-const Bbutton = styled.button`
-  width: 400px;
-  height: 54px;
-  border: none;
-  color: white;
-  background-color: #4a4c6c;
-  font-size: 20px;
-  font-family: sans-serif;
-  font-weight: lighter;
-  cursor: pointer;
-`;
+
 const ATag = styled.a`
   font-weight: bold;
 `;
@@ -183,17 +177,6 @@ const FormTag = styled.div`
 const PasswordWrapper = styled.div`
   position: relative;
   width: 100%;
-`;
-
-const PasswordInput = styled.input`
-  width: 100%;
-  height: 48px;
-  border: 1px solid #8a8585;
-  border-radius: 4px;
-  padding-left: 10px;
-  padding-right: 40px;
-  font-size: 16px;
-  font-family: sans-serif;
 `;
 
 const EyeButton = styled.button`
