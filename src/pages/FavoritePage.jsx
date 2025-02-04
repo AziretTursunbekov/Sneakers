@@ -3,44 +3,66 @@ import { useCart } from "../context/CardContext";
 import { Icons } from "../assets";
 
 export default function FavoritePage() {
-  const { state ,addToFavorite,addToCart} = useCart();
+  const { state, addToFavorite, addToCart, cart } = useCart();
   return (
     <>
-      <StyledContain>
-        <div style={{ width: "81%" }}>
-          <StdMiniContain>
-            {state.length > 0 && (
-              <>
-                {state.map((item) => (
-                  <StdMiniCard key={item.id}>
-                    <StayleHeart onClick={() => addToFavorite(item)}>
-                      {state.some((cartItem) => cartItem.id === item.id) ? (
-                        <Icons.Frame />
-                      ) : (
-                        <Icons.Heart />
-                      )}
-                    </StayleHeart>
-                    <StdImage src={item.image} />
-                    <StdBtnCard onClick={() => addToCart(item)}>Add To Card</StdBtnCard>
-                    <StdTitle>{item.name}</StdTitle>
-                    <StdPrice2>
-                      <span style={{ color: item.oldPrice ? "red" : "black" }}>
-                        ${item.price}
-                        {"    "}
-                      </span>
-                      <StdOldPrice>{item.oldPrice}</StdOldPrice>
-                    </StdPrice2>
-                    <StayleDivStdStars>
-                      <StdStars src={item.rating} />
-                      <StdPrice>({item.reviews})</StdPrice>
-                    </StayleDivStdStars>
-                  </StdMiniCard>
-                ))}
-              </>
-            )}
-          </StdMiniContain>
+      {state.length === 0 ? (
+        <div
+          style={{
+            width: "100%",
+            height: "100vh",
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+          }}
+        >
+          <h1>избранных товаров нет</h1>
         </div>
-      </StyledContain>
+      ) : (
+        <>
+          <StyledContain>
+            <div style={{ width: "81%" }}>
+              <StdMiniContain>
+                {state.length > 0 && (
+                  <>
+                    {state.map((item) => (
+                      <StdMiniCard key={item.id}>
+                        <StayleHeart onClick={() => addToFavorite(item)}>
+                          {state.some((cartItem) => cartItem.id === item.id) ? (
+                            <Icons.Frame />
+                          ) : (
+                            <Icons.Heart />
+                          )}
+                        </StayleHeart>
+                        <StdImage src={item.image} />
+                        <StdBtnCard onClick={() => addToCart(item)}>
+                          {cart.some((cartItem) => cartItem.id === item.id)
+                            ? "Delete From Cart"
+                            : "Add To Card"}
+                        </StdBtnCard>
+                        <StdTitle>{item.name}</StdTitle>
+                        <StdPrice2>
+                          <span
+                            style={{ color: item.oldPrice ? "red" : "black" }}
+                          >
+                            ${item.price}
+                            {"    "}
+                          </span>
+                          <StdOldPrice>{item.oldPrice}</StdOldPrice>
+                        </StdPrice2>
+                        <StayleDivStdStars>
+                          <StdStars src={item.rating} />
+                          <StdPrice>({item.reviews})</StdPrice>
+                        </StayleDivStdStars>
+                      </StdMiniCard>
+                    ))}
+                  </>
+                )}
+              </StdMiniContain>
+            </div>
+          </StyledContain>
+        </>
+      )}
     </>
   );
 }

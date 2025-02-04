@@ -64,7 +64,6 @@ const SignIn = () => {
     if (isValid) {
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
-      // alert("Данные сохранены!");
       setPath("/");
       setEmail("");
       setPassword("");
@@ -110,6 +109,7 @@ const SignIn = () => {
               {errors.password && <ErrorText>{errors.password}</ErrorText>}
             </Valid>
           </FormTag>
+
           <Button
             variant={"sign"}
             type="submit"

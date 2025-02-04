@@ -6,13 +6,30 @@ import Button from "../components/UI/button/Button";
 
 export default function CartPage() {
   const { state, cart, addToCart, addToFavorite } = useCart();
+
+  const totalSum = cart.reduce((acc, item) => {
+    return acc + item.price;
+  }, 0);
+
   return (
     <>
-      <StyledContain>
-        <div style={{ width: "81%" }}>
-          <StdMiniContain>
-            {cart.length > 0 && (
-              <>
+      {cart.length === 0 ? (
+        <div
+          style={{
+            width: "100%",
+            height: "100vh",
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+          }}
+        >
+          <h1>Ваша корзина пуста</h1>
+        </div>
+      ) : (
+        <>
+          <StyledContain>
+            <div style={{ width: "100%" }}>
+              <StdMiniContain>
                 {cart.map((item) => (
                   <StdMiniCard key={item.id}>
                     <StayleHeart onClick={() => addToFavorite(item)}>
@@ -43,15 +60,43 @@ export default function CartPage() {
                     </StayleDivStdStars>
                   </StdMiniCard>
                 ))}
-              </>
-            )}
-          </StdMiniContain>
-        </div>
-      </StyledContain>
+              </StdMiniContain>
+            </div>
+          </StyledContain>
+          <StyleTitalDiv>
+            <StyleTotal>
+              <span>Total:</span>
+              <span>${totalSum}</span>
+            </StyleTotal>
+            <Button> Заказать </Button>
+          </StyleTitalDiv>
+        </>
+      )}
     </>
   );
 }
-
+const StyleTitalDiv = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding-right: 20px;
+  Button {
+    width: 270px;
+    font-size: 36px;
+    border-radius: 20px;
+    background-color: #000000c6;
+    color: white;
+    padding: 0;
+  }
+`;
+const StyleTotal = styled.p`
+  font-size: 36px;
+  width: 270px;
+  display: flex;
+  justify-content: space-between;
+`;
 const StayleHeart = styled.div`
   position: absolute;
   top: 11px;
